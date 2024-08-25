@@ -1,0 +1,9 @@
+# Sensitive files
+.env
+db.sqlite3
+settings.py
+__pycache__
+
+# Virtual environment
+venv/
+env/
