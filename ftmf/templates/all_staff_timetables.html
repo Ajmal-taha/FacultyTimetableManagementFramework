@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Staff Timetables</title>
+    <style>
+        img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    {% for image_path in image_paths %}
+        <div>
+            <img src="file://{{ image_path }}" alt="Timetable">
+        </div>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Subject List{% endblock %}
+
+{% block content %}
+<h1>Subject List</h1>
+<form method="GET" action="">
+    <input type="text" name="query" placeholder="Search subject by name">
+    <button type="submit">Search</button>
+</form>
+<br>
+<h3>Add Subject</h3>
+<form action="{% url 'create_subject' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="subject_name" placeholder="Subject name">
+    <button type="submit">Add Subject</button>
+</form>
+<br>
+<ul>
+    {% for subject in subjects %}
+    <li class="item">
+        <span class="info">{{ subject.name }}</span>
+        <form class="delete-form" action="{% url 'delete_subject' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <input type="hidden" name="subject_id" value="{{ subject.id }}">
+            <button type="submit" class="delete-button">Delete</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+<!-- display_all_data.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Data</title>
+</head>
+<body>
+    <h1>All Data</h1>
+    <ul>
+        {% for staff_member in staff %}
+        <li>
+            <strong>{{ staff_member.name }}</strong>
+            <ul>
+                {% for subject in staff_member.subjects.all %}
+                <li>{{ subject.name }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+    <strong> Subjects </strong>
+    <ul>
+        {% for sub in subs %}
+        <li>
+            {{ sub.name }}
+        </li>
+        {% endfor %}
+    </ul>
+    <strong> Sections </strong>
+    <ul>
+        {% for section in sections %}
+        <li>
+            {{ section.name }}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

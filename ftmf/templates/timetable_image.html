@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Timetable</title>
+    <!-- Include Bootstrap CSS (optional) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .container {
+            text-align: center; /* Center-align content inside the container */
+        }
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .download-btn {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style = "text-align: center;">Time Table</h1>
+
+        <!-- Image Container -->
+        <div class="image-container">
+            <img src="{{ image_path }}" class="img-fluid" alt="Image not found">
+        </div>
+        <br>
+        <br>
+        <!-- Download Button -->
+        <a href="{{ image_path }}" download="timetable.png" class="btn btn-primary download-btn">Download Image</a>
+    </div>
+</body>
+</html>

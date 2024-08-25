@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Staff List{% endblock %}
+
+{% block content %}
+    <h1>Staff List</h1>
+    <br>
+    <form method="GET" action="">
+        <input type="text" name="query" value="{{ query }}" placeholder="Search staff by name">
+        <button type="submit">Search</button>
+    </form>
+    <br>
+    <h3> Add Staff</h3>
+    <form action="{% url 'add_staff'%}" method="post">
+        {% csrf_token %}
+        <input type="text" name="staff_name" placeholder="Staff name">
+        <button type="submit">Add Staff</button>
+    </form>
+    <br>
+    <ul>
+        {% for staff in staffs %}
+        <li class="staff-item">
+            <h3>{{ staff.name }}</h3>
+            Preferred Subjects:
+            <ul>
+                {% for subject in staff.subjects.all %}
+                <li class="item">
+                    <span class="info">{{ subject.name }}</span>
+                    <form class="remove-form" action="{% url 'remove_subject' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="staff_id" value="{{ staff.id }}">
+                        <input type="hidden" name="subject_id" value="{{ subject.id }}">
+                        <button type="submit" class="remove-button">Remove</button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+            <form action="{% url 'add_subject' staff.id %}" method="post">
+                {% csrf_token %}
+                <input type="text" name="subject_name" placeholder="Subject name">
+                <button type="submit">Add Subject preference</button>
+            </form>
+            <form action="{% url 'delete_staff' staff.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Delete Staff</button>
+            </form>
+        </li>
+        {% empty %}
+            <li>No Staff found.</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

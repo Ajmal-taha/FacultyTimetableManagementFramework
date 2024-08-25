@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Section List{% endblock %}
+{% block content %}
+    <h1>Section List</h1>
+    <form method="GET" action="">
+        <input type="text" name="query" placeholder="Search section by name">
+        <button type="submit">Search</button>
+    </form>
+    <br>
+    <h3> Add Section</h3>
+    <form action="{% url 'create_section'%}" method="post">
+            {% csrf_token %}
+            <select name="year" id="year">
+                <option value="">Select Year</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <select name="semester" id="semester">
+                <option value="">Select semester</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+            <input type="text" name="section_name" placeholder="Section name">
+            <button type="submit">Add Section</button>
+    </form>
+    <br>
+    <ul>
+        {% for section in sections %}
+        <li class="item">
+            <span class="info">{{ section.year }}-{{ section.semester }} {{ section.name }}</span>
+            <form class="delete-form" action="{% url 'delete_section' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <input type="hidden" name="section_id" value="{{ section.id }}">
+                <button type="submit" class="delete-button">Delete</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

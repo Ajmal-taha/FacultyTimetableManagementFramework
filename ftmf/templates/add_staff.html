@@ -1,0 +1,16 @@
+<!-- add_staff.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Staff</title>
+</head>
+<body>
+    <h1>Add Staff</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Name">
+        <button type="submit">Add Staff</button>
+    </form>
+</body>
+</html>
